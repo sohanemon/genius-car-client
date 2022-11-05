@@ -1,6 +1,7 @@
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import "swiper/css";
+import { useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import "swiper/css";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import banner1 from "../assets/images/banner/1.jpg";
 import banner2 from "../assets/images/banner/2.jpg";
 import banner3 from "../assets/images/banner/3.jpg";
@@ -9,13 +10,12 @@ import banner5 from "../assets/images/banner/5.jpg";
 import banner6 from "../assets/images/banner/6.jpg";
 import PrimaryBtn from "./primaryBtn";
 import SecondaryBtn from "./secondaryBtn";
-import { useEffect, useState } from "react";
 const HomeSlider = () => {
   return (
     <>
       <Swiper className='mySwiper h-[470px] rounded-lg overflow-hidden'>
         {banners.map((el) => (
-          <SwiperSlide className='relative '>
+          <SwiperSlide className='relative ' key={el}>
             <img
               src={el}
               alt=''
@@ -33,7 +33,7 @@ const HomeSlider = () => {
                 <PrimaryBtn>Discover more</PrimaryBtn>
                 <SecondaryBtn className='!text-white'>
                   Latest project
-                </SecondaryBtn>{" "}
+                </SecondaryBtn>
               </div>
             </div>
           </SwiperSlide>
