@@ -1,5 +1,6 @@
 import About from "../components/about";
 import HomeSlider from "../components/home-slider";
+import Location from "../components/location";
 import Services from "../components/services/services";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
       <HomeSlider />
       <About />
       <Services />
+      <Location />
     </>
   );
 };

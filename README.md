@@ -36,3 +36,13 @@ swipe.on("slideChange", () => {
     } text-xl text-white h-12 w-12 p-3 rounded-full`}
 />
 ```
+
+## import image with require
+
+- use default parameter
+
+```js
+const image = require("../assets/images/location/Group 32.svg").default;
+```
+
+> as being a part of es6 `require()` returns a module. As it is not a normal javascript but bundled by webpack, we will found our output at a folder like `/static/*/*.*`. Which is actually at `require().default`
