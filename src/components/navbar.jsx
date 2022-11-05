@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { BsHandbag, BsSearch } from "react-icons/bs";
+import SecondaryBtn from "./secondaryBtn";
 const Navbar = () => {
   return (
     <div className='flex items-center justify-between my-10'>
@@ -17,9 +18,7 @@ const Navbar = () => {
           <BsHandbag />
           <BsSearch />
         </div>
-        <button className='text-red-600 border-current border px-6 py-3 rounded hover:text-white  hover:bg-red-600 duration-300 '>
-          Appointment
-        </button>
+        <SecondaryBtn>Appointment</SecondaryBtn>
       </div>
     </div>
   );
