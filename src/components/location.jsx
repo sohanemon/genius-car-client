@@ -2,7 +2,7 @@ const Location = () => {
   return (
     <section
       id='location'
-      className='bg-gray-900 rounded-lg flex justify-evenly py-20'
+      className='bg-gray-900 rounded-lg flex justify-evenly py-20 my-24'
     >
       {data.map((el) => (
         <div key={el.text} className='flex gap-5'>
