@@ -46,3 +46,5 @@ const image = require("../assets/images/location/Group 32.svg").default;
 ```
 
 > as being a part of es6 `require()` returns a module. As it is not a normal javascript but bundled by webpack, we will found our output at a folder like `/static/*/*.*`. Which is actually at `require().default`
+
+> remember sometimes `.default` is not required. `require()` itself returns a static location
