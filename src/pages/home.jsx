@@ -1,5 +1,6 @@
 import About from "../components/about";
 import Features from "../components/features";
+import Footer from "../components/footer";
 import HomeSlider from "../components/home-slider";
 import Location from "../components/location";
 import PopularProducts from "../components/popular-products";
@@ -18,6 +19,7 @@ const Home = () => {
       <Team />
       <Features />
       <Testimonial />
+      <Footer />
     </>
   );
 };
