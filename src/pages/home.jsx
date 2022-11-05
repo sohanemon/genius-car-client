@@ -3,6 +3,7 @@ import HomeSlider from "../components/home-slider";
 import Location from "../components/location";
 import PopularProducts from "../components/popular-products";
 import Services from "../components/services";
+import Team from "../components/team";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Services />
       <Location />
       <PopularProducts />
+      <Team />
     </>
   );
 };
