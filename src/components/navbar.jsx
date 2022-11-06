@@ -10,12 +10,17 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <div className='flex items-center justify-between my-10'>
-      <img className='w-20' src={logo} alt='' />
+      <img
+        onClick={() => navigate("/")}
+        className='w-20 cursor-pointer'
+        src={logo}
+        alt=''
+      />
       <ul className='flex text-gray-700 capitalize space-x-7'>
         {navItems.map((el) => (
-          <Link to={el} key={el} className='hover:text-black'>
+          <a href={`#${el}`} key={el} className='hover:text-black'>
             {el}
-          </Link>
+          </a>
         ))}
       </ul>
       <div className='flex gap-8 items-center'>
