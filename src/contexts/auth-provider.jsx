@@ -14,11 +14,13 @@ export const useAuth = () => useContext(Auth);
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
+  const [isLoading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        setLoading(false);
       } else {
         console.log("no previous user found");
       }
@@ -82,7 +84,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <Auth.Provider
-      value={{ user, logOut, googleLogin, emailSignUp, emailLogin }}
+      value={{ isLoading, user, logOut, googleLogin, emailSignUp, emailLogin }}
     >
       {children}
     </Auth.Provider>

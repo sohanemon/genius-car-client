@@ -1,12 +1,16 @@
+import { Header } from "./../components/header";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import bg from "../assets/images/checkout/checkout.png";
 import PrimaryBtn from "../components/primaryBtn";
+import { useAuth } from "../contexts/auth-provider";
+import useScrollToTop from "../hooks/useScrollToTop";
 
 const Services = () => {
   const params = useParams();
+  useScrollToTop();
+  const { user, isLoading } = useAuth();
   const [service, setService] = useState({});
   const { reset, register, handleSubmit } = useForm();
   useEffect(() => {
@@ -15,33 +19,27 @@ const Services = () => {
       .then((res) => {
         setService(res.data);
         reset({
+          displayName: user?.displayName,
+          email: user?.email,
           serviceName: res.data.title,
           description: res.data.description,
           servicePrice: res.data.price,
-          serviceType: "normal",
-          textHere: "i need it urgent",
         });
       });
 
     return () => {};
-  }, []);
+  }, [isLoading]);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = (data, e) => {
+    axios.post(`${process.env.REACT_APP_host}/orders`, data).then((res) => {
+      console.log(res);
+      e.target.reset();
+    });
   };
 
   return (
     <div>
-      <header className='relative rounded-2xl shadow-md overflow-hidden'>
-        <img src={bg} alt='' />
-        <div className='absolute w-full h-full top-0 left-0 bg-gradient-to-r from-black/90 to-transparent' />
-        <p className='text-5xl font-bold text-white absolute top-1/2 -translate-y-1/2 pl-20'>
-          {service?.title}
-        </p>
-        <div className='w-72 h-12 absolute bottom-0 left-1/2 -translate-x-1/2 trapezoid grid place-content-center'>
-          <p className='text-lg text-white translate-y-6'>Home/Service</p>
-        </div>
-      </header>
+      <Header pageName={"Services"} title={service?.title} />
       <br />
       <br />
       <br />
@@ -51,6 +49,17 @@ const Services = () => {
           className='p-24 bg-gray-100 rounded-lg space-y-5'
         >
           <div className='grid grid-cols-2 gap-5'>
+            {" "}
+            <InputField
+              register={register}
+              name='displayName'
+              placeholder='Your name'
+            />
+            <InputField
+              register={register}
+              name='email'
+              placeholder='Your email'
+            />
             <InputField
               defaultValue={service?.title}
               register={register}
@@ -62,16 +71,6 @@ const Services = () => {
               register={register}
               name='servicePrice'
               placeholder='Service price'
-            />
-            <InputField
-              register={register}
-              name='textHere'
-              placeholder='Text here'
-            />
-            <InputField
-              register={register}
-              name='serviceType'
-              placeholder='Service type'
             />
           </div>
           <textarea

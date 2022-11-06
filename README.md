@@ -8,6 +8,17 @@ touch layouts/main.jsx
 touch routes/router.jsx
 ```
 
+## Awesome navItems mapping
+
+```js
+const navItems = [
+  <Link to='/'>Home</Link>,
+  <a href='#about'>About</a>,
+  <a href='#services'>services</a>,
+  <Link to={"/orders"}>Orders</Link>,
+];
+```
+
 ## Disable next button on swiper
 
 - to re-render create a state
@@ -82,6 +93,44 @@ function InputField({ register, title }) {
           <InputField register={register} title='password' />
 ```
 
+### to use default values
+
+- create a default value
+
+```js
+let defaultValues = {};
+defaultValues.firstName = "Sohan";
+defaultValues.lastName = "Emon";
+reset({ ...defaultValues });
+```
+
+- or start as following
+
+```js
+const { reset, register } = useForm();
+
+useEffect(() => {
+  reset({ firstName: "sohan", lastName: "emon" });
+}, []);
+
+return (
+  <div className='App'>
+    <input {...register("firstName")} placeholder='First Name' />
+    <input {...register("lastName")} placeholder='Last Name' />
+  </div>
+);
+```
+
+> JSON.stringify is not required with axios
+
+### reset/empty field on submit in rhf
+
+```js
+const onSubmit = (data, e) => {
+  e.target.reset();
+};
+```
+
 ## handling Promises
 
 - `Promise` constructor receives a callback function and the callback function receives `res()` and `rej()`
@@ -123,3 +172,17 @@ funPromise.then(() => {});
 ```
 
 > a better way to handle promise
+
+## react-router loads a page from its middle of content
+
+- use following hook
+
+```js
+const useScrollToTop = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    return () => {};
+  }, []);
+};
+export default useScrollToTop;
+```
