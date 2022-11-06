@@ -12,9 +12,8 @@ const Services = () => {
       .then((res) => setServices(res.data));
     return () => {};
   }, []);
-  console.log(services);
   return (
-    <section id='services '>
+    <section id='services'>
       <Heading
         title={"Service"}
         details='Our Service Area'
