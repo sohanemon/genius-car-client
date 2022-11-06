@@ -1,8 +1,18 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Heading from "../heading";
 import SecondaryBtn from "../secondaryBtn";
 import Card from "./card";
 
 const Services = () => {
+  const [services, setServices] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_host}/services`)
+      .then((res) => setServices(res.data));
+    return () => {};
+  }, []);
+  console.log(services);
   return (
     <section id='services '>
       <Heading
@@ -13,8 +23,8 @@ const Services = () => {
         }
       />
       <div className='grid grid-cols-3 gap-5 mt-10'>
-        {[...Array(6).keys()].map((el) => (
-          <Card key={el} />
+        {services?.map((el) => (
+          <Card key={el._id} {...el} />
         ))}
       </div>
       <div className='flex justify-center my-10'>

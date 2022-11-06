@@ -18,7 +18,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         setUser(user);
       } else {
         console.log("no previous user found");
