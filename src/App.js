@@ -1,10 +1,13 @@
 import { RouterProvider } from "react-router-dom";
+import AuthProvider from "./contexts/auth-provider";
 import router from "./routes/router";
 
 function App() {
   return (
     <div className='w-5/6 mx-auto'>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </div>
   );
 }

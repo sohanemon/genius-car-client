@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import PrimaryBtn from "../components/primaryBtn";
+import { useAuth } from "../contexts/auth-provider";
 
 const Login = ({ signUp }) => {
+  const { googleLogin } = useAuth();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
@@ -31,18 +33,22 @@ const Login = ({ signUp }) => {
         </p>
         <div className='flex justify-center gap-4'>
           <img
+            className='cursor-pointer'
             src={
               require("../assets/images/login/genius_car/Facebook.svg").default
             }
             alt=''
           />
           <img
+            className='cursor-pointer'
             src={
               require("../assets/images/login/genius_car/Group 25.svg").default
             }
             alt=''
           />
           <img
+            onClick={() => googleLogin().then(() => navigate("/"))}
+            className='cursor-pointer'
             src={
               require("../assets/images/login/genius_car/Google.svg").default
             }

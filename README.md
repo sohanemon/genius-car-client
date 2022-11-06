@@ -81,3 +81,45 @@ function InputField({ register, title }) {
 <InputField register={register} title='email' />
           <InputField register={register} title='password' />
 ```
+
+## handling Promises
+
+- `Promise` constructor receives a callback function and the callback function receives `res()` and `rej()`
+
+```js
+const prom = new Promise((resolve, reject) => {
+  const provider = new GoogleAuthProvider();
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      resolve("logged");
+    })
+    .catch((error) => {
+      reject("out");
+    });
+});
+
+prom.then(() => {});
+```
+
+> this promise may be invoked automatically.
+
+- we should use as follow
+
+```js
+const funPromise = () =>
+  new Promise((resolve, reject) => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        resolve("logged");
+      })
+      .catch((error) => {
+        reject("out");
+      });
+  });
+funPromise.then(() => {});
+```
+
+> a better way to handle promise
