@@ -13,7 +13,7 @@ const Orders = () => {
       .then((res) => setOrders(res.data));
 
     return () => {};
-  }, [isLoading]);
+  }, [isLoading, orders]);
 
   return (
     <section>
@@ -34,8 +34,13 @@ const Orders = () => {
 
 export default Orders;
 
-function OrderItem({ email, serviceName, displayName }) {
+function OrderItem({ email, serviceName, displayName, _id }) {
   const [service, setService] = useState({});
+  const handleDeleteOrder = () => {
+    axios
+      .delete(`${process.env.REACT_APP_host}/order/${_id}`)
+      .then((res) => console.log(res.data));
+  };
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_host}/service/?title=${serviceName}`)
@@ -46,7 +51,10 @@ function OrderItem({ email, serviceName, displayName }) {
   return (
     <div className='grid grid-cols-5 items-center'>
       <div className='col-span-2 flex items-center gap-7'>
-        <MdCancel className='text-4xl text-gray-600 hover:scale-105 duration-300 cursor-pointer' />
+        <MdCancel
+          onClick={handleDeleteOrder}
+          className='text-4xl text-gray-600 hover:scale-105 duration-300 cursor-pointer'
+        />
         <img
           src={service?.img}
           alt=''
