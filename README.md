@@ -50,3 +50,34 @@ const image = require("../assets/images/location/Group 32.svg").default;
 > remember sometimes `.default` is not required. `require()` itself returns a static location
 
 ## using react-hook-form
+
+- prebuilt component
+
+```js
+function InputField({ register, title }) {
+  return (
+    <div className='flex flex-col gap-4'>
+      <label
+        className='text-lg font-semibold text-gray-700 capitalize'
+        htmlFor={title}
+      >
+        {title}
+      </label>
+      <input
+        className='border-2 placeholder:font-semibold py-4 px-6 rounded-lg outline-gray-500'
+        type={title}
+        id={title}
+        {...register(title)}
+        placeholder={`Your ${title}`}
+      />
+    </div>
+  );
+}
+```
+
+- and pass as follow
+
+```js
+<InputField register={register} title='email' />
+          <InputField register={register} title='password' />
+```

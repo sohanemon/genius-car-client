@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import PrimaryBtn from "../components/primaryBtn";
 
-const Login = () => {
+const Login = ({ signUp }) => {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
@@ -9,21 +11,24 @@ const Login = () => {
 
   return (
     <div className='grid grid-cols-2 items-center'>
-      <section className='p-10'>
+      <section className='p-20'>
         <img src={require("../assets/images/login/login.svg").default} alt='' />
       </section>
       <section className='border-2 p-10 m-10 rounded-lg space-y-4'>
         <h1 className='text-4xl font-semibold text-center text-gray-700'>
-          Login
+          {signUp ? "Sign Up" : "Login"}
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
           <InputField register={register} title='email' />
           <InputField register={register} title='password' />
+          {signUp && <InputField register={register} title='password' twice />}
           <PrimaryBtn className='w-full !rounded-lg !py-4 !font-semibold'>
-            Login
+            {signUp ? "Sign up" : "Login"}
           </PrimaryBtn>
         </form>
-        <p className='font-medium text-center text-gray-700'>Or Sign In with</p>
+        <p className='font-medium text-center text-gray-700'>
+          Or Sign {signUp ? "up" : "in"} with
+        </p>
         <div className='flex justify-center gap-4'>
           <img
             src={
@@ -45,7 +50,15 @@ const Login = () => {
           />
         </div>
         <p className='text-lg text-center'>
-          Have an account? <span className='text-red-500'>Sign In</span>
+          {signUp ? "Have" : "Don't have"} an account?{" "}
+          <span
+            onClick={() =>
+              signUp ? navigate("/login") : navigate("/register")
+            }
+            className='text-red-500 cursor-pointer'
+          >
+            Sign {signUp ? "in" : "up"}
+          </span>
         </p>
       </section>
     </div>
@@ -54,21 +67,21 @@ const Login = () => {
 
 export default Login;
 
-function InputField({ register, title }) {
+function InputField({ register, title, twice }) {
   return (
     <div className='flex flex-col gap-4'>
       <label
         className='text-lg font-semibold text-gray-700 capitalize'
-        htmlFor={title}
+        htmlFor={twice ? "confirm" : title}
       >
-        {title}
+        {twice ? "Confirm password" : title}
       </label>
       <input
         className='border-2 placeholder:font-semibold py-4 px-6 rounded-lg outline-gray-500'
         type={title}
-        id={title}
-        {...register(title)}
-        placeholder={`Your ${title}`}
+        id={twice ? "confirm" : title}
+        {...register(twice ? "confirm" : title)}
+        placeholder={`Your ${title} ${twice && "again"}`}
       />
     </div>
   );
