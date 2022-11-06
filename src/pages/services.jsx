@@ -8,7 +8,9 @@ const Services = () => {
         <p className='text-5xl font-bold text-white absolute top-1/2 -translate-y-1/2 pl-20'>
           Add New Service
         </p>
-        <div className='w-72 h-12 absolute bottom-0 left-1/2 -translate-x-1/2 trapezoid' />
+        <div className='w-72 h-12 absolute bottom-0 left-1/2 -translate-x-1/2 trapezoid grid place-content-center'>
+          <p className='text-lg text-white translate-y-6'>Home/Service</p>
+        </div>
       </header>
     </div>
   );
