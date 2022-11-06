@@ -4,11 +4,16 @@ import PrimaryBtn from "../components/primaryBtn";
 import { useAuth } from "../contexts/auth-provider";
 
 const Login = ({ signUp }) => {
-  const { googleLogin } = useAuth();
+  const { googleLogin, emailSignUp, emailLogin } = useAuth();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    if (signUp && data.password === data.confirm) {
+      emailSignUp(data).then(() => navigate("/"));
+    } else {
+      emailLogin(data).then(() => navigate("/"));
+    }
   };
 
   return (
