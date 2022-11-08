@@ -3,7 +3,7 @@
 ```sh
 cd src
 rm App.css
-mkdir components contexts hooks pages layouts
+mkdir components contexts hooks pages layouts routes
 touch layouts/main.jsx
 touch routes/router.jsx
 ```
