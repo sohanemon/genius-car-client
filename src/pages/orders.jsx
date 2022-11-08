@@ -9,11 +9,15 @@ const Orders = () => {
   const { user, isLoading } = useAuth();
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_host}/orders/?email=${user?.email}`)
+      .get(`${process.env.REACT_APP_host}/orders/?email=${user?.email}`, {
+        headers: {
+          token: JSON.parse(localStorage.getItem("genius-car-token")),
+        },
+      })
       .then((res) => setOrders(res.data));
 
     return () => {};
-  }, [isLoading, orders]);
+  }, [isLoading, orders, user?.email]);
 
   return (
     <section>

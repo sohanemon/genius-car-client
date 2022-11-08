@@ -9,6 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { app } from "../firebase/app";
+import axios from "axios";
 const Auth = createContext();
 export const useAuth = () => useContext(Auth);
 const auth = getAuth(app);
@@ -29,6 +30,13 @@ const AuthProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
+  const generateToken = (email) => {
+    axios
+      .post(`${process.env.REACT_APP_host}/jwt`, { email })
+      .then((res) =>
+        localStorage.setItem("genius-car-token", JSON.stringify(res.data))
+      );
+  };
 
   //   const googleLogin = () => {
   //     const provider = new GoogleAuthProvider();
@@ -52,7 +60,7 @@ const AuthProvider = ({ children }) => {
 
       signInWithPopup(auth, provider)
         .then((result) => {
-          console.log(result);
+          generateToken(result.user.email);
           resolve("logged");
         })
         .catch((error) => {

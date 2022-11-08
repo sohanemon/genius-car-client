@@ -121,7 +121,35 @@ return (
 );
 ```
 
+## Axios
+
 > JSON.stringify is not required with axios
+
+- passing to body `axios.post(uri,data)`
+
+```js
+axios.post(`${process.env.REACT_APP_host}/orders`, { dev: "emon" });
+```
+
+- passing to header `axios.get(uri,config)`
+
+```js
+axios.get(`${process.env.REACT_APP_host}/orders`, {
+  headers: { name: "emon" },
+});
+```
+
+- for passing both header and body `axios.post(uri, data, config)`
+
+```js
+axios.get(
+  `${process.env.REACT_APP_host}/orders/?email=${user?.email}`,
+  { dev: "emon" },
+  {
+    headers: { name: "emon" },
+  }
+);
+```
 
 ### reset/empty field on submit in rhf
 
