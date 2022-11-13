@@ -150,6 +150,23 @@ axios.get(
   }
 );
 ```
+### Axios instance 🚀🚀🚀
+- create an instance
+```js
+export const client = axios.create({
+  baseURL: process.env.REACT_APP_server,
+  timeout: 5000,
+  headers: { authorization: "Bearer" },
+});
+```
+- now use from any where
+```js
+client.get().then((res) => console.log(res));
+```
+or
+```js
+client.post("/service", data).then((res) => console.log(res));
+```
 
 ### reset/empty field on submit in rhf
 
