@@ -7,8 +7,7 @@ const Footer = () => {
         <div className='col-span-2 space-y-5'>
           <img src={require("../assets/logo.svg").default} alt='' />
           <p className='text-sm leading-relaxed text-gray-200 w-[35ch]'>
-            Edwin Diaz is a software and web technologies engineer, a life coach
-            trainer who is also a serial .
+            Sohanur Rahman Emon is a software and web developer.
           </p>
           <div className='space-x-2'>
             <SocialIcon network='facebook' className='!h-7 !w-7' />
