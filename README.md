@@ -168,6 +168,15 @@ or
 client.post("/service", data).then((res) => console.log(res));
 ```
 
+### ImgBB with Axios
+```js
+axios
+      .post(
+        `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.REACT_APP_imgbb_api}`,
+        formData
+      )
+// where formData is formData.append("image", data.image[0]);
+```
 ### reset/empty field on submit in rhf
 
 ```js
